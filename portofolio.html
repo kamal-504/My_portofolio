@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bespoke Portfolio | Kamal Ibrahim</title>
+    
+    <!-- خطوط القاهرة والإنجليزي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- مكتبة أنيميشن السكرول AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* ==================== متغيرات الألوان (الوضع الفاتح والداكن) ==================== */
+        :root {
+            --bg-cream: #f6f3eb;
+            --emerald-vibrant: #0f4c3a;
+            --emerald-dark: #0a3327;
+            --card-surface: #ffffff;
+            --accent-gold: #c59b27;
+            --text-dark: #0f4c3a;
+            --text-muted: #4a5d58;
+            --border-light: rgba(15, 76, 58, 0.15);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-family: 'Cairo', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg-cream: #040d0a;
+            --emerald-vibrant: #d4af37;
+            --emerald-dark: #071712;
+            --card-surface: #0a2119;
+            --accent-gold: #d4af37;
+            --text-dark: #f4f1ea;
+            --text-muted: #bbb6a8;
+            --border-light: rgba(212, 175, 55, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-family); }
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: var(--bg-cream); 
+            color: var(--text-dark);
+            line-height: 1.8; 
+            overflow-x: hidden; 
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
+
+        /* ==================== الهيدر الأزرار التفاعلية ==================== */
+        header { 
+            padding: 30px 0; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .brand-title { font-size: 1.8rem; font-weight: 900; color: var(--emerald-vibrant); letter-spacing: -1px; }
+        
+        .header-actions { display: flex; align-items: center; gap: 15px; }
+
+        .theme-toggle-btn, .lang-toggle-btn {
+            background: var(--card-surface);
+            border: 1px solid var(--border-light);
+            color: var(--text-dark);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle-btn:hover, .lang-toggle-btn:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== سكشن التعريف ==================== */
+        .hero { padding: 60px 0 40px; }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+
+        .main-headline { 
+            font-size: 3.1rem; 
+            font-weight: 900; 
+            line-height: 1.25; 
+            margin-bottom: 20px; 
+            color: var(--emerald-vibrant);
+        }
+        .main-headline span { color: var(--accent-gold); }
+
+        .hero-desc { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 25px; }
+
+        .action-buttons { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+
+        .btn-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-cv {
+            background: linear-gradient(135deg, var(--emerald-vibrant) 0%, #0a3327 100%);
+            color: #ffffff;
+            border: 1px solid var(--emerald-vibrant);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] .btn-cv {
+            background: linear-gradient(135deg, #d4af37 0%, #aa8311 100%);
+            color: #040d0a;
+            font-weight: 900;
+            border: 1px solid #d4af37;
+        }
+
+        .btn-cv:hover {
+            background: var(--accent-gold);
+            color: #111;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.25);
+            border-color: var(--accent-gold);
+        }
+
+        .btn-contact {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--border-light);
+        }
+
+        .btn-contact:hover {
+            background: rgba(212, 175, 55, 0.08);
+            transform: translateY(-4px);
+        }
+
+        /* ==================== الصورة والكلمة الخلفية ==================== */
+        .editorial-hero-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            min-height: 450px;
+        }
+
+        .bg-typography {
+            position: absolute;
+            top: 20%;
+            right: -10px;
+            font-size: 5.8rem;
+            font-weight: 900;
+            color: rgba(15, 76, 58, 0.1);
+            text-transform: uppercase;
+            line-height: 0.85;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            letter-spacing: -2px;
+        }
+
+        [data-theme="dark"] .bg-typography { color: rgba(212, 175, 55, 0.05); }
+
+        .img-blend-box {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 360px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .editorial-avatar-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+            transition: var(--transition);
+        }
+
+        .interests-card {
+            background: var(--card-surface);
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 10px;
+            border: 1px solid var(--border-light);
+            border-inline-start: 5px solid var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        .interests-title { color: var(--emerald-vibrant); margin-bottom: 10px; font-weight: 800; font-size: 1.15rem; }
+
+        /* ==================== شريط الإحصائيات الفخم ==================== */
+        .stats-bar {
+            margin: 40px 0 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            background: var(--card-surface);
+            padding: 25px 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.2rem; font-weight: 900; color: var(--accent-gold); line-height: 1.1; }
+        .stat-label { font-size: 0.95rem; font-weight: 700; color: var(--text-muted); margin-top: 5px; }
+
+        /* ==================== سكشن المهارات الشخصية (Soft Skills) ==================== */
+        .skills-section { padding: 60px 0; border-top: 1px solid var(--border-light); }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: var(--card-surface);
+            padding: 30px 25px;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 30px rgba(197, 155, 39, 0.15);
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: rgba(197, 155, 39, 0.12);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover .skill-icon {
+            background: var(--accent-gold);
+            color: #040d0a;
+        }
+
+        .skill-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--emerald-vibrant);
+            margin-bottom: 10px;
+        }
+
+        .skill-desc {
+            font-size: 0.93rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ==================== سكشن الرحلة والخبرات (Timeline) ==================== */
+        .timeline-section { padding: 60px 0; border-top: 1px solid var(--border-light); }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto 0;
+            padding: 10px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent-gold);
+            opacity: 0.4;
+            inset-inline-start: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+            padding-inline-start: 55px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            inset-inline-start: 11px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            border: 4px solid var(--card-surface);
+            box-shadow: 0 0 10px rgba(197, 155, 39, 0.5);
+        }
+
+        .timeline-card {
+            background: var(--card-surface);
+            padding: 22px 28px;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .timeline-date { font-size: 0.85rem; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; }
+        .timeline-title { font-size: 1.25rem; font-weight: 800; color: var(--emerald-vibrant); margin: 5px 0 8px; }
+        .timeline-desc { font-size: 0.95rem; color: var(--text-muted); }
+
+        /* ==================== سكشن الـ CV والمتعلقات ==================== */
+        .cv-section { padding: 60px 0; border-top: 1px solid var(--border-light); }
+        .section-heading { font-size: 2.2rem; margin-bottom: 35px; color: var(--emerald-vibrant); font-weight: 900; }
+
+        .cv-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 35px; align-items: start; }
+
+        .cv-viewer-card {
+            background: var(--card-surface);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .cv-frame { width: 100%; height: 500px; border: none; border-radius: 12px; background: #111; }
+        .cv-controls { display: flex; gap: 15px; margin-top: 20px; justify-content: flex-end; }
+
+        .btn-action-sm {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-gold-sm { background: var(--accent-gold); color: #040d0a; font-weight: 800; }
+        .btn-gold-sm:hover { background: #ffffff; color: #040d0a; }
+
+        .btn-outline-sm { border: 1px solid var(--border-light); color: var(--text-dark); }
+        .btn-outline-sm:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+        .cv-attachments-card {
+            background: var(--card-surface);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--border-light);
+            border-top: 4px solid var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .attachments-title { font-size: 1.3rem; color: var(--emerald-vibrant); font-weight: 800; margin-bottom: 20px; }
+
+        .attachment-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-radius: 12px;
+            background: var(--bg-cream);
+            margin-bottom: 12px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        .attachment-item:hover { transform: translateX(-5px); border-color: var(--accent-gold); }
+
+        .attachment-info { display: flex; align-items: center; gap: 12px; }
+        .attachment-info i { font-size: 1.3rem; color: var(--accent-gold); }
+        .attachment-name { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); }
+        .attachment-link { color: var(--accent-gold); text-decoration: none; font-size: 1.1rem; }
+
+        /* ==================== سكشن المشاريع مع صور الغلاف ==================== */
+        .projects-section { padding: 60px 0; border-top: 1px solid var(--border-light); }
+        .cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .luxury-card {
+            background: var(--card-surface);
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            border-top: 4px solid var(--accent-gold);
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .luxury-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border-color: var(--accent-gold);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            background: var(--bg-cream);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .luxury-card:hover .card-img {
+            transform: scale(1.08);
+        }
+
+        .card-body {
+            padding: 25px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .card-tag { font-size: 0.8rem; color: var(--accent-gold); font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+        .card-title { font-size: 1.4rem; color: var(--emerald-vibrant); margin: 8px 0 12px; font-weight: 800; }
+        .card-desc { color: var(--text-muted); font-size: 0.93rem; margin-bottom: 20px; line-height: 1.6; }
+
+        .card-links { display: flex; gap: 20px; align-items: center; margin-top: auto; }
+        .card-btn { text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: var(--transition); }
+        .btn-gold { color: var(--accent-gold); }
+        .btn-emerald { color: var(--text-dark); opacity: 0.85; }
+        .btn-emerald:hover { opacity: 1; color: var(--accent-gold); }
+
+        /* ==================== نموذج تواصل فاخر ==================== */
+        .contact-section { padding: 60px 0; border-top: 1px solid var(--border-light); }
+        .contact-card {
+            background: var(--card-surface);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group.full-width { grid-column: span 2; }
+
+        .form-label { font-weight: 700; font-size: 0.95rem; color: var(--emerald-vibrant); }
+        .form-input, .form-textarea {
+            background: var(--bg-cream);
+            border: 1px solid var(--border-light);
+            padding: 12px 18px;
+            border-radius: 12px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-textarea:focus { border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(197, 155, 39, 0.2); }
+        .form-textarea { height: 130px; resize: none; }
+
+        .btn-submit {
+            background: var(--accent-gold);
+            color: #040d0a;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover { background: var(--emerald-vibrant); color: #fff; transform: translateY(-3px); }
+
+        /* ==================== الفوتر الاحترافي الجديد ==================== */
+        footer {
+            margin-top: 80px;
+            background: var(--card-surface);
+            border-top: 1px solid var(--border-light);
+            padding: 45px 0 25px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .footer-brand {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--emerald-vibrant);
+            letter-spacing: -1px;
+        }
+
+        .social-bar { 
+            display: flex; 
+            gap: 20px; 
+            justify-content: center; 
+            font-size: 1.4rem;
+        }
+        
+        .social-circle { 
+            background: linear-gradient(135deg, #071712 0%, #040d0a 100%);
+            color: #d4af37 !important;
+            text-decoration: none; 
+            transition: var(--transition); 
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #d4af37;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-circle:hover { 
+            background: #d4af37; 
+            color: #040d0a !important; 
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-divider {
+            width: 100%;
+            max-width: 600px;
+            height: 1px;
+            background: var(--border-light);
+            margin: 10px 0;
+        }
+
+        .copyright-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* ==================== زر العودة للأعلى العايم المربع ==================== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            inset-inline-end: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--card-surface);
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .back-to-top.active { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--accent-gold); color: #040d0a; transform: translateY(-5px); }
+
+        @media (max-width: 850px) {
+            .hero-grid, .cv-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .main-headline { font-size: 2.2rem; }
+            .bg-typography { font-size: 3.8rem; right: 0; left: 0; }
+            .action-buttons { justify-content: center; }
+            .cv-controls { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الهيدر أزرار التبديل -->
+        <header>
+            <div class="brand-title">PORTFOLIO.</div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" id="themeToggle">
+                    <i class="fa-solid fa-moon"></i> <span id="themeLabel">Dark</span>
+                </button>
+                <button class="lang-toggle-btn" id="langToggle">
+                    <i class="fa-solid fa-globe"></i> <span id="langLabel">English</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- سكشن التعريف الرئيسي -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div data-aos="fade-up" data-aos-duration="1000">
+                    <h1 class="main-headline" id="mainHeadline">ابتكار واجهات متطورة <br><span>بدقة تكتيكية وأداء استثنائي</span></h1>
+                    <p class="hero-desc" id="heroDesc">
+                        طالب بكلية الحاسبات والمعلومات جامعة بنها، ومطور واجهات أمامیة متمرس في React.js ضمن مبادرة DEPI. أركز على بناء وتطوير تطبيقات الويب بأعلى معايير الأداء وكتابة كود نظيف وقابل للتوسع.
+                    </p>
+
+                    <div class="action-buttons">
+                        <a href="#cv-section" class="btn-main btn-cv" id="btnCvText">
+                            <i class="fa-solid fa-file-pdf"></i> السيرة الذاتية والمتعلقات
+                        </a>
+                        <a href="#contact-section" class="btn-main btn-contact" id="btnContactText">
+                            <i class="fa-solid fa-paper-plane"></i> تواصل معي
+                        </a>
+                    </div>
+
+                    <!-- كارت الاهتمامات -->
+                    <div class="interests-card">
+                        <h3 class="interests-title" id="interestsTitle"><i class="fa-solid fa-chess-king"></i> اهتمامات وشغف شخصي:</h3>
+                        <p style="color: var(--text-muted); font-size: 0.98rem;" id="interestsDesc">
+                            يستهويني التفكير الاستراتيجي والتخطيط المتبع في لعبة الشطرنج، إلى جانب شغفي بعالم السيارات وهندستها الديناميكية، وأسعى دائماً لتطوير مهاراتي البرمجية لبناء تجارب ويب فريدة.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="editorial-hero-wrapper" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                    <div class="bg-typography">DEVELOPER</div>
+                    <div class="img-blend-box">
+                        <img src="../portofolio/photos/Gemini_Generated_Image_6991406991406991.jpg" class="editorial-avatar-img" alt="الصورة الشخصية">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- شريط الإحصائيات الواقعي -->
+        <div class="stats-bar" data-aos="fade-up">
+            <div class="stat-item">
+                <div class="stat-number">+5</div>
+                <div class="stat-label" id="stat1">مشاريع برمجة وتطبيقات</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">React</div>
+                <div class="stat-label" id="stat2">تخصص مسار DEPI</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">FCAI</div>
+                <div class="stat-label" id="stat3">حاسبات بنها</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label" id="stat4">التزام ودقة في الأداء</div>
+            </div>
+        </div>
+
+        <!-- سكشن المهارات الشخصية (Soft Skills) -->
+        <section class="skills-section">
+            <h2 class="section-heading" data-aos="fade-up" id="softSkillsHeading"><i class="fa-solid fa-brain"></i> المهارات الشخصية وبيئة العمل</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-icon"><i class="fa-solid fa-users"></i></div>
+                    <h3 class="skill-title" id="sk1Title">العمل الجماعي (Teamwork)</h3>
+                    <p class="skill-desc" id="sk1Desc">قدرة عالية على والتكامل مع الفريق البرمجي، تبادل الأفكار بإنتاجية، وتطبيق منهجية العمل الجماعي في المشاريع.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+                    <h3 class="skill-title" id="sk2Title">حل المشكلات (Problem Solving)</h3>
+                    <p class="skill-desc" id="sk2Desc">تحليل المشكلات المعقدة وتفكيكها إلى خطوات منهجية منطقية للوصول لأفضل الأساليب والأداء.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h3 class="skill-title" id="sk3Title">إدارة الوقت (Time Management)</h3>
+                    <p class="skill-desc" id="sk3Desc">القدرة على ترتيب الأولويات والتنظيم العالي للمهام لضمان تسليم المشاريع وفق الجداول الزمنية.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-icon"><i class="fa-solid fa-comments"></i></div>
+                    <h3 class="skill-title" id="sk4Title">التواصل الفعال (Communication)</h3>
+                    <p class="skill-desc" id="sk4Desc">إيصال المفاهيم التقنية بوضوح، والاستماع الفعال لمتطلبات العملاء وأفراد الفريق البرمجي.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- سكشن الرحلة والخبرات (Timeline) -->
+        <section class="timeline-section">
+            <h2 class="section-heading" data-aos="fade-up" id="timelineHeading"><i class="fa-solid fa-timeline"></i> مسار الرحلة والخبرات</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date" id="time1Date">2026 - الحاضر</div>
+                        <h3 class="timeline-title" id="time1Title">تدريب رواد مصر الرقمية (DEPI) - React Track</h3>
+                        <p class="timeline-desc" id="time1Desc">تطوير تطبيقات واجهة المستخدم التفاعلية باستخدام React.js، بناء مكونات قابلة لإعادة الاستخدام، والتعامل مع حالات التطبيق المتقدمة.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date" id="time2Date">2025 - الحاضر</div>
+                        <h3 class="timeline-title" id="time2Title">كلية الحاسبات والمعلومات - جامعة بنها</h3>
+                        <p class="timeline-desc" id="time2Desc">دراسة متعمقة في البرمجة الكائنية (OOP)، هياكل البيانات، الخوارزميات، وشبكات وتصميم النظم.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- سكشن الـ CV والمتعلقات -->
+        <section class="cv-section" id="cv-section">
+            <h2 class="section-heading" data-aos="fade-up" id="cvHeading"><i class="fa-solid fa-id-card"></i> السيرة الذاتية والمتعلقات</h2>
+
+            <div class="cv-grid">
+                <div class="cv-viewer-card" data-aos="fade-up" data-aos-delay="100">
+                    <iframe src="kamal_ibrahim_cv.pdf" class="cv-frame" title="معاينة السيرة الذاتية"></iframe>
+                    <div class="cv-controls">
+                        <a href="kamal_ibrahim_cv.pdf" target="_blank" class="btn-action-sm btn-outline-sm" id="btnOpenTab">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح في تبويب جديد
+                        </a>
+                        <a href="kamal_ibrahim_cv.pdf" download class="btn-action-sm btn-gold-sm" id="btnDownloadCv">
+                            <i class="fa-solid fa-download"></i> تحميل الـ CV
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cv-attachments-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="attachments-title" id="attachmentsTitle"><i class="fa-solid fa-certificate"></i> الشهادات والمتعلقات</h3>
+
+                    <div class="attachment-item">
+                        <div class="attachment-info">
+                            <i class="fa-solid fa-award"></i>
+                            <span class="attachment-name" id="cert1">شهادة React Frontend - DEPI</span>
+                        </div>
+                        <a href="#" target="_blank" class="attachment-link"><i class="fa-solid fa-link"></i></a>
+                    </div>
+
+                    <div class="attachment-item">
+                        <div class="attachment-info">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span class="attachment-name" id="cert2">سجل الدرجات الأكاديمي (Transcript)</span>
+                        </div>
+                        <a href="#" target="_blank" class="attachment-link"><i class="fa-solid fa-link"></i></a>
+                    </div>
+
+                    <div class="attachment-item">
+                        <div class="attachment-info">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <span class="attachment-name" id="cert3">ملف النماذج والتوصيات (Portfolio Docs)</span>
+                        </div>
+                        <a href="#" target="_blank" class="attachment-link"><i class="fa-solid fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- سكشن المشاريع مع صور الغلاف -->
+        <section class="projects-section">
+            <h2 class="section-heading" data-aos="fade-up" id="projectsHeading">أبرز الأعمال والمشاريع</h2>
+            
+            <div class="cards-container">
+                <!-- مشروع 1 -->
+                <div class="luxury-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" class="card-img" alt="معاينة منصة البيانات">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <span class="card-tag">REACT / JAVASCRIPT</span>
+                            <h3 class="card-title" id="proj1Title">منصة إدارة البيانات الذكية</h3>
+                            <p class="card-desc" id="proj1Desc">تطبيق ويب معقد يتيح معالجة وإدارة البيانات بلحظية وسلاسة عالية مع واجهة تفاعلية.</p>
+                        </div>
+                        <div class="card-links">
+                            <a href="#" target="_blank" class="card-btn btn-gold" id="proj1Live">المعاينة الحية</a>
+                            <a href="#" target="_blank" class="card-btn btn-emerald">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مشروع 2 -->
+                <div class="luxury-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" class="card-img" alt="معاينة الواجهة التفاعلية">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <span class="card-tag">FRONTEND ARCHITECTURE</span>
+                            <h3 class="card-title" id="proj2Title">واجهة تفاعلية عصرية</h3>
+                            <p class="card-desc" id="proj2Desc">تصميم وبناء واجهة مستخدم ناعمة وسريعة التحميل متوافقة تماماً مع جميع مقاسات الشاشات.</p>
+                        </div>
+                        <div class="card-links">
+                            <a href="#" target="_blank" class="card-btn btn-gold" id="proj2Live">المعاينة الحية</a>
+                            <a href="#" target="_blank" class="card-btn btn-emerald">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- سكشن نموذج التواصل الفاخر -->
+        <section class="contact-section" id="contact-section">
+            <h2 class="section-heading" style="text-align: center;" data-aos="fade-up" id="contactHeading"><i class="fa-solid fa-paper-plane"></i> أرسل لي رسالة</h2>
+            
+            <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                <form id="contactForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" id="lblFormName">الاسم الكامل</label>
+                            <input type="text" class="form-input" placeholder="كمال إبراهيم" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" id="lblFormEmail">البريد الإلكتروني</label>
+                            <input type="email" class="form-input" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" id="lblFormMsg">الرسالة</label>
+                            <textarea class="form-textarea" placeholder="اكتب رسالتك هنا..." required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit" id="btnSubmitForm">
+                        <i class="fa-solid fa-paper-plane"></i> إرسال الرسالة
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== الفوتر الاحترافي الأنيق ==================== -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">KAMAL IBRAHIM</div>
+
+            <!-- وسائل التواصل -->
+            <div class="social-bar">
+                <a href="www.linkedin.com/in/kamal-ibrahim-103128385" target="_blank" title="LinkedIn" class="social-circle"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/kamal-504" target="_blank" title="GitHub" class="social-circle"><i class="fa-brands fa-github"></i></a>
+                <a href="ka98m76a54l@gmail.com" title="Email" class="social-circle"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <!-- نص حقوق الملكية -->
+            <div class="copyright-text" id="copyrightText">
+                جميع الحقوق محفوظة © 2026 | تم التطوير والتصميم بواسطة كمال إبراهيم
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى العايم المربع -->
+    <button class="back-to-top" id="backToTopBtn" title="العودة للأعلى">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- مكتبة AOS للأنيميشن السكرول -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,
+            once: true,
+            offset: 120
+        });
+
+        // ==================== 1. Dark Mode ====================
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeLabel = document.getElementById('themeLabel');
+        const themeIcon = themeToggleBtn.querySelector('i');
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fa-solid fa-sun';
+            themeLabel.textContent = 'Light';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon';
+                themeLabel.textContent = 'Dark';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+                themeLabel.textContent = 'Light';
+            }
+        });
+
+        // ==================== 2. زر العودة للأعلى العايم المربع ====================
+        const backToTopBtn = document.getElementById('backToTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ==================== 3. نظام اللغات الثنائي (AR / EN فقط) ====================
+        const langToggleBtn = document.getElementById('langToggle');
+        const langLabel = document.getElementById('langLabel');
+        
+        let currentLang = 'ar';
+
+        const i18n = {
+            ar: {
+                btnLabel: 'English',
+                dir: 'rtl',
+                font: "'Cairo', sans-serif",
+                mainHeadline: 'ابتكار واجهات متطورة <br><span>بدقة تكتيكية وأداء استثنائي</span>',
+                heroDesc: 'طالب بكلية الحاسبات والمعلومات جامعة بنها، ومطور واجهات أمامیة متمرس في React.js ضمن مبادرة DEPI. أركز على بناء وتطوير تطبيقات الويب بأعلى معايير الأداء وكتابة كود نظيف وقابل للتوسع.',
+                btnCvText: '<i class="fa-solid fa-file-pdf"></i> السيرة الذاتية والمتعلقات',
+                btnContactText: '<i class="fa-solid fa-paper-plane"></i> تواصل معي',
+                interestsTitle: '<i class="fa-solid fa-chess-king"></i> اهتمامات وشغف شخصي:',
+                interestsDesc: 'يستهويني التفكير الاستراتيجي والتخطيط المتبع في لعبة الشطرنج، إلى جانب شغفي بعالم السيارات وهندستها الديناميكية، وأسعى دائماً لتطوير مهاراتي البرمجية لبناء تجارب ويب فريدة.',
+                stat1: 'مشاريع برمجة وتطبيقات',
+                stat2: 'تخصص مسار DEPI',
+                stat3: 'حاسبات بنها',
+                stat4: 'التزام ودقة في الأداء',
+                softSkillsHeading: '<i class="fa-solid fa-brain"></i> المهارات الشخصية وبيئة العمل',
+                sk1Title: 'العمل الجماعي (Teamwork)',
+                sk1Desc: 'قدرة عالية على والتكامل مع الفريق البرمجي، تبادل الأفكار بإنتاجية، وتطبيق منهجية العمل الجماعي في المشاريع.',
+                sk2Title: 'حل المشكلات (Problem Solving)',
+                sk2Desc: 'تحليل المشكلات المعقدة وتفكيكها إلى خطوات منهجية منطقية للوصول لأفضل الأساليب والأداء.',
+                sk3Title: 'إدارة الوقت (Time Management)',
+                sk3Desc: 'القدرة على ترتيب الأولويات والتنظيم العالي للمهام لضمان تسليم المشاريع وفق الجداول الزمنية.',
+                sk4Title: 'التواصل الفعال (Communication)',
+                sk4Desc: 'إيصال المفاهيم التقنية بوضوح، والاستماع الفعال لمتطلبات العملاء وأفراد الفريق البرمجي.',
+                timelineHeading: '<i class="fa-solid fa-timeline"></i> مسار الرحلة والخبرات',
+                time1Date: '2026 - الحاضر',
+                time1Title: 'تدريب رواد مصر الرقمية (DEPI) - React Track',
+                time1Desc: 'تطوير تطبيقات واجهة المستخدم التفاعلية باستخدام React.js، بناء مكونات قابلة لإعادة الاستخدام، والتعامل مع حالات التطبيق المتقدمة.',
+                time2Date: '2022 - الحاضر',
+                time2Title: 'كلية الحاسبات والمعلومات - جامعة بنها',
+                time2Desc: 'دراسة متعمقة في البرمجة الكائنية (OOP)، هياكل البيانات، الخوارزميات، وشبكات وتصميم النظم.',
+                cvHeading: '<i class="fa-solid fa-id-card"></i> السيرة الذاتية والمتعلقات',
+                btnOpenTab: '<i class="fa-solid fa-arrow-up-right-from-square"></i> فتح في تبويب جديد',
+                btnDownloadCv: '<i class="fa-solid fa-download"></i> تحميل الـ CV',
+                attachmentsTitle: '<i class="fa-solid fa-certificate"></i> الشهادات والمتعلقات',
+                cert1: 'شهادة React Frontend - DEPI',
+                cert2: 'سجل الدرجات الأكاديمي (Transcript)',
+                cert3: 'ملف النماذج والتوصيات (Portfolio Docs)',
+                projectsHeading: 'أبرز الأعمال والمشاريع',
+                proj1Title: 'منصة إدارة البيانات الذكية',
+                proj1Desc: 'تطبيق ويب معقد يتيح معالجة وإدارة البيانات بلحظية وسلاسة عالية مع واجهة تفاعلية.',
+                proj1Live: 'المعاينة الحية',
+                proj2Title: 'واجهة تفاعلية عصرية',
+                proj2Desc: 'تصميم وبناء واجهة مستخدم ناعمة وسريعة التحميل متوافقة تماماً مع جميع مقاسات الشاشات.',
+                proj2Live: 'المعاينة الحية',
+                contactHeading: '<i class="fa-solid fa-paper-plane"></i> أرسل لي رسالة',
+                lblFormName: 'الاسم الكامل',
+                lblFormEmail: 'البريد الإلكتروني',
+                lblFormMsg: 'الرسالة',
+                btnSubmitForm: '<i class="fa-solid fa-paper-plane"></i> إرسال الرسالة',
+                copyrightText: 'جميع الحقوق محفوظة © 2026 | تم التطوير والتصميم بواسطة كمال إبراهيم'
+            },
+            en: {
+                btnLabel: 'العربية',
+                dir: 'ltr',
+                font: "'Plus Jakarta Sans', sans-serif",
+                mainHeadline: 'Crafting Modern Interfaces <br><span>With Tactical Precision</span>',
+                heroDesc: 'Computer Science Student at Benha University & Frontend Developer specializing in React.js within the DEPI Initiative. Dedicated to building clean, scalable, and high-performance web applications.',
+                btnCvText: '<i class="fa-solid fa-file-pdf"></i> Resume & Assets',
+                btnContactText: '<i class="fa-solid fa-paper-plane"></i> Contact Me',
+                interestsTitle: '<i class="fa-solid fa-chess-king"></i> Personal Passions:',
+                interestsDesc: 'Passionate about strategic thinking through chess, fascinated by automotive engineering, and committed to mastering modern web development.',
+                stat1: 'Coding Projects Built',
+                stat2: 'DEPI React Specialization',
+                stat3: 'Benha University (FCAI)',
+                stat4: 'Dedication to Quality',
+                softSkillsHeading: '<i class="fa-solid fa-brain"></i> Soft Skills & Mindset',
+                sk1Title: 'Teamwork & Collaboration',
+                sk1Desc: 'Strong capability to integrate seamlessly with dev teams, exchange ideas productively, and thrive in agile environments.',
+                sk2Title: 'Problem Solving',
+                sk2Desc: 'Analytical approach to breaking down complex technical challenges into manageable and efficient solutions.',
+                sk3Title: 'Time Management',
+                sk3Desc: 'Highly organized approach to task prioritization, ensuring timely delivery of milestones.',
+                sk4Title: 'Effective Communication',
+                sk4Desc: 'Articulating technical ideas clearly and actively listening to client and team requirements.',
+                timelineHeading: '<i class="fa-solid fa-timeline"></i> Experience & Education',
+                time1Date: '2026 - Present',
+                time1Title: 'Digital Egypt Pioneers Initiative (DEPI) - React Track',
+                time1Desc: 'Building interactive web interfaces with React.js, component-based architectures, and state management.',
+                time2Date: '2022 - Present',
+                time2Title: 'Faculty of Computers & AI - Benha University',
+                time2Desc: 'In-depth study of Object-Oriented Programming (OOP), Data Structures, Algorithms, and System Architecture.',
+                cvHeading: '<i class="fa-solid fa-id-card"></i> Curriculum Vitae & Assets',
+                btnOpenTab: '<i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Tab',
+                btnDownloadCv: '<i class="fa-solid fa-download"></i> Download CV',
+                attachmentsTitle: '<i class="fa-solid fa-certificate"></i> Certificates & Docs',
+                cert1: 'React Frontend Certificate - DEPI',
+                cert2: 'Academic Transcript',
+                cert3: 'Portfolio Documents & References',
+                projectsHeading: 'Featured Works & Projects',
+                proj1Title: 'Smart Data Management Platform',
+                proj1Desc: 'A web application providing real-time data processing with a fluid interactive UI.',
+                proj1Live: 'Live Demo',
+                proj2Title: 'Modern Interactive UI',
+                proj2Desc: 'Designed and engineered a smooth, fast-loading user interface fully responsive across all devices.',
+                proj2Live: 'Live Demo',
+                contactHeading: '<i class="fa-solid fa-paper-plane"></i> Send Me a Message',
+                lblFormName: 'Full Name',
+                lblFormEmail: 'Email Address',
+                lblFormMsg: 'Your Message',
+                btnSubmitForm: '<i class="fa-solid fa-paper-plane"></i> Send Message',
+                copyrightText: 'All Rights Reserved © 2026 | Designed & Developed by Kamal Ibrahim'
+            }
+        };
+
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const t = i18n[currentLang];
+
+            langLabel.textContent = t.btnLabel;
+            document.documentElement.dir = t.dir;
+            document.documentElement.lang = currentLang;
+            document.documentElement.style.setProperty('--font-family', t.font);
+
+            document.getElementById('mainHeadline').innerHTML = t.mainHeadline;
+            document.getElementById('heroDesc').textContent = t.heroDesc;
+            document.getElementById('btnCvText').innerHTML = t.btnCvText;
+            document.getElementById('btnContactText').innerHTML = t.btnContactText;
+            document.getElementById('interestsTitle').innerHTML = t.interestsTitle;
+            document.getElementById('interestsDesc').textContent = t.interestsDesc;
+
+            document.getElementById('stat1').textContent = t.stat1;
+            document.getElementById('stat2').textContent = t.stat2;
+            document.getElementById('stat3').textContent = t.stat3;
+            document.getElementById('stat4').textContent = t.stat4;
+
+            document.getElementById('softSkillsHeading').innerHTML = t.softSkillsHeading;
+            document.getElementById('sk1Title').textContent = t.sk1Title;
+            document.getElementById('sk1Desc').textContent = t.sk1Desc;
+            document.getElementById('sk2Title').textContent = t.sk2Title;
+            document.getElementById('sk2Desc').textContent = t.sk2Desc;
+            document.getElementById('sk3Title').textContent = t.sk3Title;
+            document.getElementById('sk3Desc').textContent = t.sk3Desc;
+            document.getElementById('sk4Title').textContent = t.sk4Title;
+            document.getElementById('sk4Desc').textContent = t.sk4Desc;
+
+            document.getElementById('timelineHeading').innerHTML = t.timelineHeading;
+            document.getElementById('time1Date').textContent = t.time1Date;
+            document.getElementById('time1Title').textContent = t.time1Title;
+            document.getElementById('time1Desc').textContent = t.time1Desc;
+            document.getElementById('time2Date').textContent = t.time2Date;
+            document.getElementById('time2Title').textContent = t.time2Title;
+            document.getElementById('time2Desc').textContent = t.time2Desc;
+
+            document.getElementById('cvHeading').innerHTML = t.cvHeading;
+            document.getElementById('btnOpenTab').innerHTML = t.btnOpenTab;
+            document.getElementById('btnDownloadCv').innerHTML = t.btnDownloadCv;
+            document.getElementById('attachmentsTitle').innerHTML = t.attachmentsTitle;
+            document.getElementById('cert1').textContent = t.cert1;
+            document.getElementById('cert2').textContent = t.cert2;
+            document.getElementById('cert3').textContent = t.cert3;
+            document.getElementById('projectsHeading').textContent = t.projectsHeading;
+            document.getElementById('proj1Title').textContent = t.proj1Title;
+            document.getElementById('proj1Desc').textContent = t.proj1Desc;
+            document.getElementById('proj1Live').textContent = t.proj1Live;
+            document.getElementById('proj2Title').textContent = t.proj2Title;
+            document.getElementById('proj2Desc').textContent = t.proj2Desc;
+            document.getElementById('proj2Live').textContent = t.proj2Live;
+
+            document.getElementById('contactHeading').innerHTML = t.contactHeading;
+            document.getElementById('lblFormName').textContent = t.lblFormName;
+            document.getElementById('lblFormEmail').textContent = t.lblFormEmail;
+            document.getElementById('lblFormMsg').textContent = t.lblFormMsg;
+            document.getElementById('btnSubmitForm').innerHTML = t.btnSubmitForm;
+
+            document.getElementById('copyrightText').textContent = t.copyrightText;
+        });
+    </script>
+</body>
+</html>
